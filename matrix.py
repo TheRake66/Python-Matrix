@@ -22,7 +22,7 @@ class Matrix:
             raise Exception('Cannot set size less than 5x5!')
             
         if len(colors) == 0:
-            raise Exception('You must specify clors!')
+            raise Exception('You must specify colors!')
             
         if luck < 1 or luck > 100:
             raise Exception('Luck need to be between 1 and 100!')
