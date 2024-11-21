@@ -1,15 +1,15 @@
 from random import randint
 import time
-import os
 
 from color import Color
+from console import Console
 
 
 class Matrix:
     
-    
+
     def __init__(self,
-                 fps: int = 10,
+                 fps: int = 30,
                  charset: str = "0987654321",
                  width: int = 50, 
                  height: int = 15, 
@@ -42,7 +42,6 @@ class Matrix:
         self.__charmax = len(charset) - 1
         self.__running = False
         self.__time = 1 / fps
-        self.__clear = 'cls' if os.name == 'nt' else 'clear'
     
     
     def __createTears(self) -> None:
@@ -81,15 +80,16 @@ class Matrix:
 
     def stopAnimate(self) -> None:
         self.__running = False
-        os.system(self.__clear)
+        Console.clearAll()
 
 
     def startAnimate(self) -> None:
         self.__running = True
+        Console.clearAll()
         
         while self.__running:
             self.__moveTears()
             self.__createTears()
-            os.system(self.__clear)
+            Console.moveTo(0, 0)
             self.__drawTears()
             time.sleep(self.__time)
