@@ -1,10 +1,7 @@
 from enum import StrEnum
 
 
-
 class Color(StrEnum):
-
-
 
     RESET = "\033[0m"
     

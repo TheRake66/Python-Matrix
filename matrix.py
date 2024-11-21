@@ -1,23 +1,21 @@
 from random import randint
-from time import sleep
-from os import system
+import time
+import os
 
 from color import Color
-
 
 
 class Matrix:
     
     
-    
     def __init__(self,
-                 fps: int = 15,
+                 fps: int = 10,
                  charset: str = "0987654321",
                  width: int = 50, 
-                 height: int = 20, 
+                 height: int = 15, 
                  colors: list = [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ],
-                 luck: int = 15) -> None:
-        if fps <= 0:
+                 luck: int = 5) -> None:
+        if fps < 1:
             raise Exception('Cannot set less than 1 fps!')
         
         if width < 5 or height < 5:
@@ -32,71 +30,58 @@ class Matrix:
         if len(charset) < 5:
             raise Exception('Cannot set chartset less than 5!')
         
-        self.__fps = fps
         self.__charset = charset
         self.__width = width
         self.__height = height
         self.__colors = colors
         self.__luck = luck
-        self.__matrix = [[ False for x in range(self.__width) ] 
+        self.__matrix = [[ -1 for x in range(self.__width) ] 
                          for y in range(self.__height) ]
-        self.__frame = None
-        self.__bounds = height - 1
-        self.__nbcolors = len(colors)
+        self.__heightmax = height - 1
+        self.__colormax = len(colors) - 1
         self.__charmax = len(charset) - 1
         self.__running = False
         self.__time = 1 / fps
-    
+        self.__clear = 'cls' if os.name == 'nt' else 'clear'
     
     
     def __createTears(self) -> None:
         for x in range(self.__width):
             if randint(1, 100) < self.__luck:
-                self.__matrix[0][x] = True
-
-
+                self.__matrix[0][x] = 0
+                
                 
     def __moveTears(self) -> None:
-        for y in range(self.__bounds, -1, -1):
+        for y in range(self.__heightmax, -1, -1):
             for x in range(self.__width):
-                if self.__matrix[y][x]:
-                    self.__matrix[y][x] = False
-                    if y < self.__bounds:
-                        self.__matrix[y + 1][x] = True
-
-
+                value = self.__matrix[y][x]
+                if value > -1:                    
+                    if value == 0 and y < self.__heightmax:
+                        self.__matrix[y + 1][x] = 0
+                    if value == self.__colormax:
+                        self.__matrix[y][x] = -1
+                    else:
+                        self.__matrix[y][x] += 1
+                    
 
     def __drawTears(self) -> None:
-        self.__frame = [[ -1 for x in range(self.__width) ] 
-                 for y in range(self.__height) ]
-        
-        for y in range(self.__bounds, -1, -1):
-            for x in range(self.__width):
-                if self.__matrix[y][x]:
-                    for i in range(self.__nbcolors):
-                        flow = y - i
-                        if flow < 0: break
-                        self.__frame[flow][x] = i
-
-
-
-    def __printTears(self) -> None:
+        frame = ''
         for y in range(self.__height):
             for x in range(self.__width):
-                value = self.__frame[y][x]
+                value = self.__matrix[y][x]
                 if value > -1 :
                     char = self.__charset[randint(0, self.__charmax)]
                     color = self.__colors[value]
-                    print(f'{Color.BG_BLACK}{color}{char}', end='')
+                    frame += f'{Color.BG_BLACK}{color}{char}'
                 else:
-                    print(f'{Color.BG_BLACK} ', end='')
-            print()
+                    frame += f' '
+            frame += '\n'
+        print(frame)
         
-
 
     def stopAnimate(self) -> None:
         self.__running = False
-
+        os.system(self.__clear)
 
 
     def startAnimate(self) -> None:
@@ -105,7 +90,6 @@ class Matrix:
         while self.__running:
             self.__moveTears()
             self.__createTears()
+            os.system(self.__clear)
             self.__drawTears()
-            self.__printTears()
-            sleep(self.__time)
-            system('clear')
+            time.sleep(self.__time)
