@@ -10,7 +10,7 @@ class Matrix:
 
     def __init__(self,
                  fps: int = 15,
-                 charset: str = "0987654321",
+                 charset: str = '0987654321',
                  width: int = 50, 
                  height: int = 15, 
                  colors: list = [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ],
