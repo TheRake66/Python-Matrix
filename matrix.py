@@ -10,7 +10,7 @@ class Matrix:
 
     def __init__(self,
                  fps: int = 15,
-                 charset: str = '0987654321',
+                 charset: str = '1234567890',
                  width: int = 50, 
                  height: int = 15, 
                  colors: list = [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ],
@@ -21,14 +21,14 @@ class Matrix:
         if width < 5 or height < 5:
             raise Exception('Cannot set size less than 5x5!')
             
-        if len(colors) == 0:
+        if colors == []:
             raise Exception('You must specify colors!')
             
         if luck < 1 or luck > 100:
             raise Exception('Luck need to be between 1 and 100!')
         
-        if len(charset) < 5:
-            raise Exception('Cannot set chartset less than 5!')
+        if charset == '':
+            raise Exception('You must specify charset!')
         
         self.__charset = charset
         self.__width = width
