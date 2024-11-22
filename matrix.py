@@ -9,12 +9,12 @@ class Matrix:
     
 
     def __init__(self,
-                 fps: int = 30,
+                 fps: int = 15,
                  charset: str = "0987654321",
                  width: int = 50, 
                  height: int = 15, 
                  colors: list = [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ],
-                 luck: int = 5) -> None:
+                 luck: int = 10) -> None:
         if fps < 1:
             raise Exception('Cannot set less than 1 fps!')
         
@@ -46,7 +46,7 @@ class Matrix:
     
     def __createTears(self) -> None:
         for x in range(self.__width):
-            if randint(1, 100) < self.__luck:
+            if randint(1, 100) <= self.__luck:
                 self.__matrix[0][x] = 0
                 
                 
