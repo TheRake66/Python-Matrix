@@ -71,11 +71,11 @@ class Matrix:
                 if value > -1 :
                     char = self.__charset[randint(0, self.__charmax)]
                     color = self.__colors[value]
-                    frame += f'{Color.BG_BLACK}{color}{char}'
+                    frame += f'{color}{char}'
                 else:
                     frame += f' '
             frame += '\n'
-        print(frame)
+        print(f'{Color.BG_BLUE}{frame}{Color.RESET}')
         
 
     def stopAnimate(self) -> None:
