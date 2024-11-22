@@ -41,7 +41,7 @@ class Matrix:
         self.__colormax = len(colors) - 1
         self.__charmax = len(charset) - 1
         self.__running = False
-        self.__tick = 1000 / fps
+        self.__tick = 1 / fps
     
     
     def __createTears(self) -> None:
@@ -98,4 +98,4 @@ class Matrix:
             end = time.time()
             stamp = end - start
             if stamp < self.__tick:
-                time.sleep((self.__tick - stamp) / 1000)
+                time.sleep(self.__tick - stamp)
