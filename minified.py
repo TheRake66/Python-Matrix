@@ -48,7 +48,7 @@ while True:
             else:
                 frame += f' '
         frame += '\n'
-    print(f'\033[0;0H\033[40m{frame}\033[0m')
+    print(f'\033[0;0H\033[40m{frame}\033[0m', end='')
     
     end = time.time()
     stamp = end - start

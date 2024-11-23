@@ -26,4 +26,14 @@ class Console:
             x (int): Column index.
             y (int): Row index.
         """
-        print("\033[%d;%dH" % (x, y), end='')
+        cls.writeStd(f'\033[{x};{y}H')
+
+
+    @classmethod
+    def writeStd(cls, content: str) -> None:
+        """Print text without new line.
+
+        Arguments:
+            content (str): Content to print.
+        """
+        print(content, end='')
