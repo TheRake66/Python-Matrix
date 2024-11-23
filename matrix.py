@@ -75,7 +75,7 @@ class Matrix:
                 else:
                     frame += f' '
             frame += '\n'
-        print(f'{Color.BG_BLUE}{frame}{Color.RESET}')
+        print(f'{Color.BG_BLACK}{frame}{Color.RESET}')
         
 
     def stopAnimate(self) -> None:
