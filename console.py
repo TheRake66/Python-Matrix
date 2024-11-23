@@ -20,7 +20,7 @@ class Console:
     
     @classmethod
     def moveTo(cls, x: int, y: int) -> None:
-        """Move cursor certain to position.
+        """Move cursor to certain position.
 
         Arguments:
             x (int): Column index.
