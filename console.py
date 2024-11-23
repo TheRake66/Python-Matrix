@@ -26,4 +26,4 @@ class Console:
             x (int): Column index.
             y (int): Row index.
         """
-        print("\033[%d;%dH" % (x, y))
+        print("\033[%d;%dH" % (x, y), end='')
