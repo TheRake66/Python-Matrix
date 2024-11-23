@@ -2,9 +2,17 @@ from enum import StrEnum
 
 
 class Color(StrEnum):
+    """Enum class for color in console.
+    """
+    
 
+    """Reset all console properties.
+    """
     RESET = '\033[0m'
     
+    
+    """Text colors.
+    """
     BLACK = '\033[30m'
     RED = '\033[31m'
     GREEN = '\033[32m'
@@ -14,6 +22,9 @@ class Color(StrEnum):
     CYAN = '\033[36m'
     WHITE = '\033[37m'
     
+    
+    """Text colors with hight brightness.
+    """
     BRIGHT_BLACK = '\033[90m'
     BRIGHT_RED = '\033[91m'
     BRIGHT_GREEN = '\033[92m'
@@ -23,6 +34,9 @@ class Color(StrEnum):
     BRIGHT_CYAN = '\033[96m'
     BRIGHT_WHITE = '\033[97m'
     
+    
+    """Background colors.
+    """
     BG_BLACK = '\033[40m'
     BG_RED = '\033[41m'
     BG_GREEN = '\033[42m'
@@ -32,6 +46,9 @@ class Color(StrEnum):
     BG_CYAN = '\033[46m'
     BG_WHITE = '\033[47m'
     
+    
+    """Background colors with hight brightness.
+    """
     BG_BRIGHT_BLACK = '\033[100m'
     BG_BRIGHT_RED = '\033[101m'
     BG_BRIGHT_GREEN = '\033[102m'
@@ -41,6 +58,9 @@ class Color(StrEnum):
     BG_BRIGHT_CYAN = '\033[106m'
     BG_BRIGHT_WHITE = '\033[107m'
     
+    
+    """Text style types.
+    """
     BOLD = '\033[1m'
     DIM = '\033[2m'
     ITALIC = '\033[3m'

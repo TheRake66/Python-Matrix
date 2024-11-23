@@ -6,6 +6,8 @@ from console import Console
 
 
 class Matrix:
+    """Class of the Matrix animation.
+    """
     
 
     def __init__(self,
@@ -15,6 +17,23 @@ class Matrix:
                  height: int = 15, 
                  colors: list = [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ],
                  luck: int = 10) -> None:
+        """Constructor of class.
+
+        Arguments:
+            fps (int, optional): Frames per second. Defaults to 15.
+            charset (str, optional): Characters set. Defaults to '1234567890'.
+            width (int, optional): Number of columns. Defaults to 50.
+            height (int, optional): Number of rows. Defaults to 15.
+            colors (list, optional): List of colors. Defaults to [ Color.WHITE, Color.BRIGHT_GREEN, Color.BRIGHT_GREEN, Color.GREEN, Color.GREEN ].
+            luck (int, optional): Luck to create tears on each frame. Defaults to 10.
+
+        Raises:
+            Exception: If "fps" argument is less than 1.
+            Exception: If "width" or "height" arguments is less than 5.
+            Exception: If has no color in "colors" argument.
+            Exception: If "luck" argument is not in range 1 to 100.
+            Exception: If "charset" argument is empty.
+        """
         if fps < 1:
             raise Exception('Cannot set less than 1 fps!')
         
@@ -45,12 +64,16 @@ class Matrix:
     
     
     def __createTears(self) -> None:
+        """Create tears on first row.
+        """
         for x in range(self.__width):
             if randint(1, 100) <= self.__luck:
                 self.__matrix[0][x] = 0
                 
                 
     def __moveTears(self) -> None:
+        """Move alls tears to next row.
+        """
         for y in range(self.__heightmax, -1, -1):
             for x in range(self.__width):
                 value = self.__matrix[y][x]
@@ -64,6 +87,8 @@ class Matrix:
                     
 
     def __drawTears(self) -> None:
+        """Print alls tears with correct color and random character.
+        """
         frame = ''
         for y in range(self.__height):
             for x in range(self.__width):
@@ -79,11 +104,15 @@ class Matrix:
         
 
     def stopAnimate(self) -> None:
+        """Stop the animation.
+        """
         self.__running = False
         Console.clearAll()
 
 
     def startAnimate(self) -> None:
+        """Start the animation.
+        """
         self.__running = True
         Console.clearAll()
         
