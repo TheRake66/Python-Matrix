@@ -29,8 +29,8 @@ class Matrix:
 
         Raises:
             Exception: If "fps" argument is less than 1.
-            Exception: If "width" or "height" arguments is less than 5.
-            Exception: If has no color in "colors" argument.
+            Exception: If "width" or "height" arguments are less than 5.
+            Exception: If "colors" argument is empty.
             Exception: If "luck" argument is not in range 1 to 100.
             Exception: If "charset" argument is empty.
         """
