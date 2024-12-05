@@ -1,10 +1,10 @@
 <div align="center">
     <br>
-    <img src="./logo.png" alt="name" width=100>
+    <img src="./logo.png" alt="Python Matrix" width=150>
     <br>
     <br>
     <img src="https://img.shields.io/badge/License-NonCommercial-red" alt="License: Non-Commercial">
-    <img src="https://img.shields.io/github/stars/TheRake66/name" alt="GitHub stars">
+    <img src="https://img.shields.io/github/stars/TheRake66/Python-Matrix" alt="GitHub stars">
     <br>
     <br>
 </div>
