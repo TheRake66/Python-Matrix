@@ -15,7 +15,7 @@
 
 ## Preview video
 
- ![Preview](./demo.mp4)
+ ![Preview](./demo.gif)
 
 ## License and Usage Restrictions
 
