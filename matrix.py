@@ -87,7 +87,10 @@ class Matrix:
                     
 
     def __drawTears(self) -> None:
-        """Print alls tears with correct color and random character.
+        """Create frame with alls tears with correct color and random character.
+
+        Returns:
+            str: Frame created.
         """
         frame = ''
         for y in range(self.__height):
@@ -100,7 +103,7 @@ class Matrix:
                 else:
                     frame += f' '
             frame += '\n'
-        Console.writeStd(f'{Color.BG_BLACK}{frame}{Color.RESET}')
+        return f'{Color.BG_BLACK}{frame}{Color.RESET}'
         
 
     def stopAnimate(self) -> None:
@@ -119,10 +122,11 @@ class Matrix:
         while self.__running:
             start = time.time()
 
-            Console.moveTo(0, 0)
             self.__moveTears()
             self.__createTears()
-            self.__drawTears()
+            frame = self.__drawTears()
+            Console.moveTo(0, 0)
+            Console.writeStd(frame)
             
             end = time.time()
             stamp = end - start
