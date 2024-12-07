@@ -56,6 +56,7 @@ class Matrix:
         self.__luck = luck
         self.__matrix = [[ -1 for x in range(self.__width) ] 
                          for y in range(self.__height) ]
+        self.__frame = ''
         self.__heightmax = height - 1
         self.__colormax = len(colors) - 1
         self.__charmax = len(charset) - 1
@@ -72,7 +73,7 @@ class Matrix:
                 
                 
     def __moveTears(self) -> None:
-        """Move alls tears to next row.
+        """Move all tears to next row.
         """
         for y in range(self.__heightmax, -1, -1):
             for x in range(self.__width):
@@ -87,23 +88,20 @@ class Matrix:
                     
 
     def __drawTears(self) -> None:
-        """Create frame with alls tears with correct color and random character.
-
-        Returns:
-            str: Frame created.
+        """Create frame with all tears with correct color and random character.
         """
-        frame = ''
+        self.__frame = Color.BG_BLACK
         for y in range(self.__height):
             for x in range(self.__width):
                 value = self.__matrix[y][x]
                 if value > -1 :
                     char = self.__charset[randint(0, self.__charmax)]
                     color = self.__colors[value]
-                    frame += f'{color}{char}'
+                    self.__frame += color + char
                 else:
-                    frame += f' '
-            frame += '\n'
-        return f'{Color.BG_BLACK}{frame}{Color.RESET}'
+                    self.__frame += f' '
+            self.__frame += '\n'
+        self.__frame += Color.RESET
         
 
     def stopAnimate(self) -> None:
@@ -124,9 +122,10 @@ class Matrix:
 
             self.__moveTears()
             self.__createTears()
-            frame = self.__drawTears()
+            self.__drawTears()
+            
             Console.moveTo(0, 0)
-            Console.writeStd(frame)
+            Console.writeStd(self.__frame)
             
             end = time.time()
             stamp = end - start
